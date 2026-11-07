@@ -1,0 +1,462 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #111827;
+    font-family: 'Inter', sans-serif;
+    padding: 20px;
+}
+
+.game-container {
+    width: 100%;
+    max-width: 1150px;
+    padding: 30px;
+    background: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 20px;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.4);
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    gap: 15px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    font-size: 38px;
+}
+
+.logo h1 {
+    color: #f9fafb;
+    font-size: 22px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.logo p {
+    color: #9ca3af;
+    font-size: 10px;
+    letter-spacing: 3px;
+    margin-top: 5px;
+}
+
+.score-board {
+    display: flex;
+    gap: 25px;
+}
+
+.score-item {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    text-align: right;
+}
+
+.score-item span {
+    color: #9ca3af;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.score-item strong {
+    color: #a3e635;
+    font-family: 'Press Start 2P', monospace;
+    font-size: 15px;
+}
+
+.game-area {
+    width: 100%;
+    height: 400px;
+    position: relative;
+    overflow: hidden;
+    background: #f4f0df;
+    border-radius: 12px;
+    border: 2px solid #d6d0bd;
+}
+
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+.game-overlay {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+    background: rgba(244, 240, 223, 0.96);
+
+    padding: 10px;
+    z-index: 2;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.overlay-content {
+    width: 100%;
+    max-width: 520px;
+    margin: auto;
+    padding: 5px 0;
+    flex-shrink: 0;
+}
+.overlay-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.overlay-content h2 {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 22px;
+    line-height: 1.7;
+    color: #263a29;
+    margin-bottom: 12px;
+}
+
+.overlay-content p {
+    color: #59634f;
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 22px;
+}
+
+.primary-btn {
+    background: #365d38;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 15px 28px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.primary-btn:hover {
+    background: #26482a;
+    transform: translateY(-2px);
+}
+
+.game-controls {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 22px;
+    flex-wrap: wrap;
+}
+
+.control-btn,
+.jump-btn {
+    border: 1px solid #4b5563;
+    background: #374151;
+    color: #f9fafb;
+    border-radius: 8px;
+    padding: 12px 22px;
+    font-size: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.control-btn:hover,
+.jump-btn:hover {
+    background: #4b5563;
+}
+
+.control-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.jump-btn {
+    background: #84cc16;
+    color: #17210c;
+    border-color: #84cc16;
+    padding-left: 35px;
+    padding-right: 35px;
+}
+
+.jump-btn:hover {
+    background: #a3e635;
+}
+
+.game-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.game-footer p {
+    color: #9ca3af;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+
+/* HEADER RIGHT SECTION */
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: right;
+}
+
+.player-info span {
+    color: #9ca3af;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.player-info strong {
+    color: #a3e635;
+    font-size: 12px;
+}
+
+/* LOGOUT BUTTON */
+.logout-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 10px 14px;
+    background: #374151;
+    border: 1px solid #4b5563;
+    border-radius: 8px;
+    color: #f9fafb;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    transition: 0.2s;
+}
+
+.logout-btn:hover {
+    background: #991b1b;
+    border-color: #ef4444;
+}
+
+
+
+/* ===================================
+   BANANA MATHS CHALLENGE
+=================================== */
+
+.banana-heading {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 12px;
+    color: #365d38;
+    line-height: 1.5;
+    margin: 5px 0;
+}
+
+.banana-description {
+    color: #59634f;
+    font-size: 11px;
+    line-height: 1.4;
+    margin-bottom: 7px;
+}
+
+/* Puzzle image */
+.banana-image-container {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 8px;
+    background: #ffffff;
+    border: 2px solid #d6d0bd;
+    border-radius: 8px;
+    padding: 5px;
+}
+
+.banana-image-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 115px;
+    object-fit: contain;
+}
+
+/* Answer form */
+#bananaAnswerForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 7px;
+}
+
+#bananaAnswer {
+    width: 100%;
+    max-width: 200px;
+    padding: 9px;
+    text-align: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: #263a29;
+    background: #ffffff;
+    border: 2px solid #b7bda9;
+    border-radius: 8px;
+    outline: none;
+}
+
+#bananaAnswer:focus {
+    border-color: #84cc16;
+}
+
+#bananaFeedback {
+    font-size: 11px;
+    font-weight: 700;
+    margin: 5px 0;
+    line-height: 1.4;
+}
+
+#bananaFeedback.success {
+    color: #26733a;
+}
+
+#bananaFeedback.error {
+    color: #b91c1c;
+}
+
+/* Buttons */
+#bananaAnswerForm .primary-btn,
+#continueBtn {
+    padding: 10px 20px;
+    font-size: 11px;
+}
+
+#continueBtn {
+    background: #365d38;
+    color: #ffffff;
+    margin-top: 5px;
+}
+
+#continueBtn:hover {
+    background: #26482a;
+}
+
+.final-logout-btn {
+    display: inline-block;
+    text-decoration: none;
+    margin-top: 10px;
+}
+
+/* Hide elements */
+#bananaPuzzle[hidden],
+#continueBtn[hidden],
+#finalGameActions[hidden] {
+    display: none !important;
+}
+
+/* Hide duplicate welcome/game-over headings during puzzle */
+.overlay-content:has(#bananaPuzzle:not([hidden])) > .overlay-icon,
+.overlay-content:has(#bananaPuzzle:not([hidden])) > h2,
+.overlay-content:has(#bananaPuzzle:not([hidden])) > #overlayMessage {
+    display: none;
+}
+
+/* Hide original start button during puzzle */
+.overlay-content:has(#bananaPuzzle:not([hidden])) > #startBtn {
+    display: none;
+}
+
+
+
+@media (max-width: 600px) {
+    .header-right {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 12px;
+    }
+}
+
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 10px;
+    }
+
+    .game-container {
+        padding: 15px;
+    }
+
+    .game-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .score-board {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .game-area {
+        height: 250px;
+    }
+
+    .overlay-content h2 {
+        font-size: 16px;
+    }
+
+    .game-footer {
+        flex-direction: column;
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .game-overlay {
+        max-height: calc(100vh - 20px);
+        padding: 15px;
+    }
+
+    .overlay-content {
+        max-width: 100%;
+    }
+
+    .banana-image-container {
+        max-width: 100%;
+    }
+
+    .banana-image-container img {
+        max-height: 280px;
+    }
+
+}
